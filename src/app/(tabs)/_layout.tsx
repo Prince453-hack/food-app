@@ -45,6 +45,8 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
         }}
       />
+
+      {/* for commit */}
     </Tabs>
   );
 }
