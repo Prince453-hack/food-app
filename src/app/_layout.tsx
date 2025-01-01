@@ -9,10 +9,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-
 import { useColorScheme } from "@/src/components/useColorScheme";
 import CartProvider from "../providers/CartProvider";
-
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -51,7 +49,16 @@ function RootLayoutNav() {
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <CartProvider>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: true,
+              headerTitle: "Index",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen name="(user)" options={{ headerShown: false }} />
+          <Stack.Screen name="(admin)" options={{ headerShown: false }} />
           <Stack.Screen name="cart" options={{ presentation: "modal" }} />
         </Stack>
       </CartProvider>
