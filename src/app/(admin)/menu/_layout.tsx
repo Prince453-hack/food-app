@@ -12,7 +12,7 @@ export default function Menu() {
           title: "Menu",
           headerTitleAlign: "center",
           headerRight: () => (
-            <Link href="/" asChild>
+            <Link href="/(admin)/menu/create" asChild>
               <Pressable>
                 {({ pressed }) => (
                   <FontAwesome
