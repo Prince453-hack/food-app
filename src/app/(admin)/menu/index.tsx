@@ -8,7 +8,7 @@ export default function MenuScreen() {
   const { data: product, error, isLoading } = useProductList();
 
   if (isLoading) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
   }
 
   if (error) {
