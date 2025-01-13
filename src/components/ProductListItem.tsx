@@ -21,7 +21,7 @@ const ProductListItem = ({ product }: Props) => {
     <Link href={`/${segments[0]}/menu/${product.id}`} asChild>
       <Pressable style={styles.container}>
         <Image
-          source={{ uri: product.image }}
+          source={{ uri: product.image || defaultPizzaImage }}
           style={styles.image}
           resizeMode="contain"
         />
