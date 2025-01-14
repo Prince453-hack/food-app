@@ -9,8 +9,22 @@ export default function Menu() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Menu",
+          title: "Menu (Admin)",
           headerTitleAlign: "center",
+          headerLeft: () => (
+            <Link href="/(user)/menu" asChild>
+              <Pressable>
+                {({ pressed }) => (
+                  <FontAwesome
+                    name="users"
+                    size={25}
+                    color={Colors.light.tint}
+                    style={{ marginLeft: 15, opacity: pressed ? 0.5 : 1 }}
+                  />
+                )}
+              </Pressable>
+            </Link>
+          ),
           headerRight: () => (
             <Link href="/(admin)/menu/create" asChild>
               <Pressable>
