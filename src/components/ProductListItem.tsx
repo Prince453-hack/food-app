@@ -1,15 +1,11 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Colors from "../constants/Colors";
 import { Link, useSegments } from "expo-router";
+import { Tables } from "../database.types";
 
-interface Props {
-  product: {
-    id: number;
-    name: string;
-    image: string;
-    price: number;
-  };
-}
+type Props = {
+  product: Tables<"products">;
+};
 
 export const defaultPizzaImage =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
