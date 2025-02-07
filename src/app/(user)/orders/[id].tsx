@@ -17,22 +17,9 @@ const OrdersDetailsPage = () => {
     return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
   }
 
-  if (error) {
+  if (error || !order) {
     return <Text>Failed to fetch data</Text>;
   }
-
-  const mappedOrderItems = order?.order_item.map((item) => ({
-    ...item,
-    size: (item.size === "Small"
-      ? "S"
-      : item.size === "Medium"
-      ? "M"
-      : item.size === "Large"
-      ? "L"
-      : item.size === "ExtraLarge"
-      ? "XL"
-      : "M") as PizzaSize,
-  }));
 
   return (
     <View style={{ padding: 10, gap: 20 }}>
@@ -42,7 +29,7 @@ const OrdersDetailsPage = () => {
       {order && <OrderListItem order={order} />}
 
       <FlatList
-        data={mappedOrderItems}
+        data={order.order_item}
         renderItem={({ item }) => <OrderItemListItem item={item} />}
         contentContainerStyle={{ gap: 10 }}
       />
