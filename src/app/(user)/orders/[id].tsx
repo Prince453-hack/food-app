@@ -1,17 +1,18 @@
-import { View, Text, FlatList, ActivityIndicator } from "react-native";
-import React from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
-import orders from "@/assets/data/orders";
-import OrderListItem from "@/src/components/OrderListItem";
-import OrderItemListItem from "@/src/components/OrderItemListItem";
 import { useOrderDetails } from "@/src/api/orders";
-import { PizzaSize } from "@/src/types";
+import { useUpdateOrdersListener } from "@/src/api/orders/subscriptions";
+import OrderItemListItem from "@/src/components/OrderItemListItem";
+import OrderListItem from "@/src/components/OrderListItem";
+import { Stack, useLocalSearchParams } from "expo-router";
+import React from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 const OrdersDetailsPage = () => {
   const { id: idString } = useLocalSearchParams();
   const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 
   const { data: order, error, isLoading } = useOrderDetails(id);
+
+  useUpdateOrdersListener(id);
 
   if (isLoading) {
     return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;

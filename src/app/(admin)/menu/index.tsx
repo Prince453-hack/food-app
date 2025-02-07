@@ -1,4 +1,3 @@
-import products from "@/assets/data/products";
 import { useProductList } from "@/src/api/products";
 import ProductListItem from "@/src/components/ProductListItem";
 import { StatusBar } from "expo-status-bar";

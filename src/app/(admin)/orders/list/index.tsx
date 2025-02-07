@@ -1,4 +1,5 @@
 import { useAdminOrderList } from "@/src/api/orders";
+import { useInsertOrdersListener } from "@/src/api/orders/subscriptions";
 import OrderListItem from "@/src/components/OrderListItem";
 import React from "react";
 import { ActivityIndicator, FlatList, Text } from "react-native";
@@ -9,6 +10,8 @@ const OrdersScreen = () => {
     error,
     isLoading,
   } = useAdminOrderList({ archived: false });
+
+  useInsertOrdersListener();
 
   if (isLoading) {
     return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
