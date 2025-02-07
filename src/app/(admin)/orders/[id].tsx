@@ -1,24 +1,24 @@
+import { useOrderDetails, useUpdateOrder } from "@/src/api/orders";
+import OrderItemListItem from "@/src/components/OrderItemListItem";
+import OrderListItem from "@/src/components/OrderListItem";
+import Colors from "@/src/constants/Colors";
+import { OrderStatusList } from "@/src/types";
+import { Stack, useLocalSearchParams } from "expo-router";
+import React from "react";
 import {
-  View,
-  Text,
+  ActivityIndicator,
   FlatList,
   Pressable,
-  ActivityIndicator,
+  Text,
+  View,
 } from "react-native";
-import React from "react";
-import { Stack, useLocalSearchParams } from "expo-router";
-import orders from "@/assets/data/orders";
-import OrderListItem from "@/src/components/OrderListItem";
-import OrderItemListItem from "@/src/components/OrderItemListItem";
-import { OrderStatusList, PizzaSize } from "@/src/types";
-import Colors from "@/src/constants/Colors";
-import { useOrderDetails } from "@/src/api/orders";
 
 const OrdersDetailsPage = () => {
   const { id: idString } = useLocalSearchParams();
   const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 
   const { data: order, error, isLoading } = useOrderDetails(id);
+  const { mutate: updateOrder } = useUpdateOrder();
 
   if (isLoading) {
     return <ActivityIndicator style={{ flex: 1, justifyContent: "center" }} />;
@@ -27,6 +27,10 @@ const OrdersDetailsPage = () => {
   if (error || !order) {
     return <Text>Failed to fetch data</Text>;
   }
+
+  const updateStatus = (status: any) => {
+    updateOrder({ id, updatedField: { status } });
+  };
 
   return (
     <View style={{ padding: 10, gap: 20 }}>
@@ -46,7 +50,7 @@ const OrdersDetailsPage = () => {
               {OrderStatusList.map((status) => (
                 <Pressable
                   key={status}
-                  onPress={() => console.warn("Update status")}
+                  onPress={() => updateStatus(status)}
                   style={{
                     borderColor: Colors.light.tint,
                     borderWidth: 1,
