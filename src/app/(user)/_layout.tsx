@@ -44,7 +44,16 @@ export default function TabLayout() {
         name="orders"
         options={{
           title: "Orders",
+          headerTitleAlign: "center",
           tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          headerTitleAlign: "center",
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
     </Tabs>
