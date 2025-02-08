@@ -1,5 +1,6 @@
 import { useProduct } from "@/src/api/products";
 import { defaultPizzaImage } from "@/src/components/ProductListItem";
+import RemoteImage from "@/src/components/RemoteImage";
 import Colors from "@/src/constants/Colors";
 import { useCart } from "@/src/providers/CartProvider";
 import { PizzaSize } from "@/src/types";
@@ -66,8 +67,9 @@ const ProductDetailsPage = () => {
 
       <Stack.Screen options={{ title: product?.name }} />
 
-      <Image
-        source={{ uri: product?.image || defaultPizzaImage }}
+      <RemoteImage
+        path={product?.image}
+        fallback={defaultPizzaImage}
         style={styles.image}
       />
 
